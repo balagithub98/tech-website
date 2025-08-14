@@ -1,0 +1,14 @@
+/*
+ * Global stylesheet for the application.
+ *
+ * Tailwind directives bring in the framework's base styles and utility classes.
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom utilities or component styles can be added here. */
+/* Example: Smooth scroll behavior across the entire site */
+html {
+  scroll-behavior: smooth;
+}
