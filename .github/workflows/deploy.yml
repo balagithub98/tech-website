@@ -17,19 +17,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
+      # Install dependencies in the tech-website folder
       - name: Install dependencies
         run: npm install
         working-directory: ./tech-website
 
+      # Build the site in the tech-website folder
       - name: Build
         run: npm run build
         working-directory: ./tech-website
 
+      # Deploy the built site to Netlify
       - name: Deploy to Netlify
         uses: netlify/actions/cli@master
         with:
@@ -37,3 +40,5 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+
