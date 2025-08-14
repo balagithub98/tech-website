@@ -1,14 +1,10 @@
 name: Deploy to Netlify
 
-# This workflow automatically builds the project and deploys it to Netlify
-# whenever changes are pushed to the `main` branch. It uses the official
-# Netlify CLI GitHub Action to perform the deployment.
-
 on:
   push:
     branches:
       - main
-  workflow_dispatch: # Manual trigger
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -22,23 +18,16 @@ jobs:
         with:
           node-version: '18'
 
-      # Install dependencies in the tech-website folder
       - name: Install dependencies
         run: npm install
-        working-directory: ./tech-website
 
-      # Build the site in the tech-website folder
       - name: Build
         run: npm run build
-        working-directory: ./tech-website
 
-      # Deploy the built site to Netlify
       - name: Deploy to Netlify
         uses: netlify/actions/cli@master
         with:
-          args: deploy --dir=tech-website/dist --prod
+          args: deploy --dir=dist --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-
-
